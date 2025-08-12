@@ -12,9 +12,12 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('Email soumis:', email); // Debug log
+    
     // Validation côté client
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRegex.test(email)) {
+      console.log('Email invalide:', email); // Debug log
       setError('Veuillez entrer une adresse email valide');
       return;
     }

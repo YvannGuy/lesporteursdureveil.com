@@ -6,8 +6,11 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json();
+    
+    console.log('API - Email reçu:', email); // Debug log
 
     if (!email) {
+      console.log('API - Email manquant'); // Debug log
       return NextResponse.json(
         { error: 'Email is required' },
         { status: 400 }
@@ -16,7 +19,9 @@ export async function POST(request: NextRequest) {
 
     // Validation du format email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    console.log('API - Test regex email:', email, emailRegex.test(email)); // Debug log
     if (!emailRegex.test(email)) {
+      console.log('API - Email invalide selon regex:', email); // Debug log
       return NextResponse.json(
         { error: 'Format d\'email invalide' },
         { status: 400 }
