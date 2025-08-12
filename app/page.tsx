@@ -11,9 +11,16 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setIsLoading(true);
-      setError('');
+    
+    // Validation côté client
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      setError('Veuillez entrer une adresse email valide');
+      return;
+    }
+    
+    setIsLoading(true);
+    setError('');
       
       try {
         const response = await fetch('/api/send-email', {
@@ -40,7 +47,6 @@ export default function Home() {
       } finally {
         setIsLoading(false);
       }
-    }
   };
 
   return (
