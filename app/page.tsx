@@ -66,38 +66,38 @@ export default function Home() {
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
-        <div className="max-w-lg mx-auto text-center text-white">
+        <div className="w-full max-w-lg mx-auto text-center text-white px-2 sm:px-4">
           {/* Logo/Title */}
           <div className="mb-12">
-            <div className="flex items-center justify-center mb-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center mb-6 gap-4">
               <img 
                 src="https://static.readdy.ai/image/da957b73b52f8479bc0334fc9a75f115/05bb09dd6544aea5d74e442c0951e0da.png" 
                 alt="Logo" 
-                className="w-16 h-16 mr-4 animate-pulse"
+                className="w-12 h-12 sm:w-16 sm:h-16 animate-pulse"
               />
-              <h1 className="font-[`Satoshi`] text-5xl md:text-6xl font-bold text-yellow-300 whitespace-nowrap">
+              <h1 className="font-[`Satoshi`] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-300 text-center leading-tight">
                 Porteur de Réveil
               </h1>
             </div>
-            <h2 className="text-xl md:text-2xl text-white/90">
+            <h2 className="text-lg sm:text-xl md:text-2xl text-white/90 text-center px-4">
               Formation et sortie d'évangélisation
             </h2>
           </div>
 
           {/* Coming Soon Message */}
           <div className="mb-12">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <i className="ri-time-line w-5 h-5 flex items-center justify-center mr-2 text-yellow-300"></i>
-              <span className="text-lg font-semibold">Bientôt Disponible</span>
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8">
+              <i className="ri-time-line w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center mr-2 text-yellow-300"></i>
+              <span className="text-sm sm:text-lg font-semibold">Bientôt Disponible</span>
             </div>
             
-            <p className="text-lg md:text-xl mb-8 text-white/90 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-white/90 leading-relaxed px-4">
               Soyez informé de l'ouverture des inscriptions
             </p>
           </div>
 
           {/* Email Subscription Form */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 mx-4">
             {!isSubmitted ? (
               <form id="email-signup" onSubmit={handleSubmit} className="space-y-6">
                 <div>

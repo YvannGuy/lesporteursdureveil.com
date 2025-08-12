@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Porteur de Réveil - Formation d'Évangélisation | Bientôt Disponible",
-  description: "Formation révolutionnaire pour devenir un véritable porteur de réveil spirituel. Découvrez les secrets de l'évangélisation moderne. Inscription bientôt ouverte.",
+  description: "Formation  pour devenir un véritable porteur de réveil spirituel. Découvrez les secrets de l'évangélisation moderne. Inscription bientôt ouverte.",
 };
 
 export default function RootLayout({
