@@ -1,40 +1,25 @@
 {
   "pages": {
-    "/api/send-email/route": [
-      "static/chunks/webpack-05cc406d6a87b1a9.js",
-      "static/chunks/4bd1b696-18452535c1c4862d.js",
-      "static/chunks/684-8c7f7c22671a5a40.js",
-      "static/chunks/main-app-ecef043da3b56a1a.js",
-      "static/chunks/app/api/send-email/route-c98d58e3bf0b89d8.js"
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
     ],
     "/not-found": [
-      "static/chunks/webpack-05cc406d6a87b1a9.js",
-      "static/chunks/4bd1b696-18452535c1c4862d.js",
-      "static/chunks/684-8c7f7c22671a5a40.js",
-      "static/chunks/main-app-ecef043da3b56a1a.js",
-      "static/chunks/app/not-found-b1d2b6979677cc1f.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack-05cc406d6a87b1a9.js",
-      "static/chunks/4bd1b696-18452535c1c4862d.js",
-      "static/chunks/684-8c7f7c22671a5a40.js",
-      "static/chunks/main-app-ecef043da3b56a1a.js",
-      "static/chunks/app/_not-found/page-b34572167b614fb3.js"
-    ],
-    "/layout": [
-      "static/chunks/webpack-05cc406d6a87b1a9.js",
-      "static/chunks/4bd1b696-18452535c1c4862d.js",
-      "static/chunks/684-8c7f7c22671a5a40.js",
-      "static/chunks/main-app-ecef043da3b56a1a.js",
-      "static/css/8548e3963bdd2998.css",
-      "static/chunks/app/layout-44362eb883d7a0a5.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/not-found.js"
     ],
     "/page": [
-      "static/chunks/webpack-05cc406d6a87b1a9.js",
-      "static/chunks/4bd1b696-18452535c1c4862d.js",
-      "static/chunks/684-8c7f7c22671a5a40.js",
-      "static/chunks/main-app-ecef043da3b56a1a.js",
-      "static/chunks/app/page-2edfe0de1130e9c7.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/api/send-email/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/send-email/route.js"
     ]
   }
 }
