@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{},\"appUsingSizeAdjust\":false,\"pagesUsingSizeAdjust\":false}"
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/yvannguyonnet/Downloads/3595907e-ac8c-42ea-9802-4a7731d0f187_17/app/layout\":[\"static/media/569ce4b8f30dc480-s.p.woff2\",\"static/media/93f479601ee12b01-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"

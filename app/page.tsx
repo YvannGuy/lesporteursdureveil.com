@@ -37,7 +37,7 @@ export default function Home() {
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.error || 'Erreur lors de l\'envoi');
+          throw new Error(data.error || 'Erreur lors de l\'envoi de l\'email');
         }
 
         setIsSubmitted(true);
@@ -46,7 +46,8 @@ export default function Home() {
           setEmail('');
         }, 3000);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+        console.error('Erreur lors de l\'envoi:', err);
+        setError(err instanceof Error ? err.message : 'Une erreur est survenue lors de l\'envoi');
       } finally {
         setIsLoading(false);
       }
@@ -143,7 +144,7 @@ export default function Home() {
                   <i className="ri-check-line w-8 h-8 flex items-center justify-center mx-auto mb-3 text-green-400 text-2xl"></i>
                   <p className="text-green-400 font-semibold text-lg">Merci !</p>
                   <p className="text-white/80 text-sm mt-2">
-                    Votre inscription a été enregistrée (mode test)
+                    Votre inscription a été enregistrée. Vous recevrez un email de confirmation dans quelques instants.
                   </p>
                 </div>
               </div>

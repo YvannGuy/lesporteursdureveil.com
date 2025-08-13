@@ -1,16 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+// Vérification de la configuration Resend
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json();
     
-    console.log('API - Email reçu:', email); // Debug log
+    console.log('API - Email reçu:', email);
+    console.log('API - RESEND_API_KEY configuré:', !!resendApiKey);
 
     if (!email) {
-      console.log('API - Email manquant'); // Debug log
+      console.log('API - Email manquant');
       return NextResponse.json(
         { error: 'Email is required' },
         { status: 400 }
@@ -19,9 +22,9 @@ export async function POST(request: NextRequest) {
 
     // Validation du format email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    console.log('API - Test regex email:', email, emailRegex.test(email)); // Debug log
+    console.log('API - Test regex email:', email, emailRegex.test(email));
     if (!emailRegex.test(email)) {
-      console.log('API - Email invalide selon regex:', email); // Debug log
+      console.log('API - Email invalide selon regex:', email);
       return NextResponse.json(
         { error: 'Format d\'email invalide' },
         { status: 400 }
@@ -29,17 +32,21 @@ export async function POST(request: NextRequest) {
     }
 
     if (!resend) {
+      console.error('API - Resend non configuré. Vérifiez RESEND_API_KEY dans .env.local');
       return NextResponse.json(
-        { error: 'Email service not configured' },
+        { error: 'Service email non configuré. Contactez l\'administrateur.' },
         { status: 500 }
       );
     }
 
-    // Email de confirmation à la personne qui s'inscrit (en mode test, envoyé à votre email)
+    console.log('API - Tentative d\'envoi des emails...');
+
+    // Email de confirmation à la personne qui s'inscrit
+    console.log('API - Envoi email de confirmation à:', email);
     const confirmationEmail = await resend.emails.send({
-      from: 'Porteur de Réveil <onboarding@resend.dev>',
-      to: ['contact@lesporteursdureveil.com'], // En mode test, on envoie à votre email
-      subject: `Inscription confirmée - ${email}`,
+      from: 'Porteur de Réveil <contact@lesporteursdureveil.com>', // Votre domaine vérifié
+      to: [email], // Envoi direct à la personne qui s'inscrit
+      subject: `Inscription confirmée - Porteur de Réveil`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="text-align: center; margin-bottom: 30px;">
@@ -68,10 +75,11 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    // Email de notification à l'équipe (en mode test, envoyé à votre email)
+    // Email de notification à l'équipe
+    console.log('API - Envoi email de notification à l\'équipe');
     const notificationEmail = await resend.emails.send({
-      from: 'Porteur de Réveil <onboarding@resend.dev>',
-      to: ['contact@lesporteursdureveil.com'], // En mode test, on envoie à votre email
+      from: 'Porteur de Réveil <contact@lesporteursdureveil.com>', // Votre domaine vérifié
+      to: ['contact@lesporteursdureveil.com'],
       subject: `Nouvelle inscription - ${email}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -106,7 +114,7 @@ export async function POST(request: NextRequest) {
     if (confirmationEmail.error) {
       console.error('Confirmation email error:', confirmationEmail.error);
       return NextResponse.json(
-        { error: 'Failed to send confirmation email' },
+        { error: 'Erreur lors de l\'envoi de l\'email de confirmation' },
         { status: 500 }
       );
     }
@@ -114,20 +122,25 @@ export async function POST(request: NextRequest) {
     if (notificationEmail.error) {
       console.error('Notification email error:', notificationEmail.error);
       return NextResponse.json(
-        { error: 'Failed to send notification email' },
+        { error: 'Erreur lors de l\'envoi de l\'email de notification' },
         { status: 500 }
       );
     }
 
+    console.log('API - Emails envoyés avec succès');
+    console.log('API - Confirmation email ID:', confirmationEmail.data?.id);
+    console.log('API - Notification email ID:', notificationEmail.data?.id);
+
     return NextResponse.json({ 
       success: true, 
+      message: 'Inscription enregistrée avec succès',
       confirmationEmail: confirmationEmail.data,
       notificationEmail: notificationEmail.data 
     });
   } catch (error) {
     console.error('API error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Erreur interne du serveur' },
       { status: 500 }
     );
   }
